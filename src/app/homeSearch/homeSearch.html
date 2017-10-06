@@ -1,0 +1,12 @@
+<div *ngIf="condition;else unset">
+  <form>
+    <input type="radio" name="status" checked> to rent
+    <input type="radio" name="status"> for sale
+  </form>
+
+  <input type="text" placeholder="Location" [(ngModel)]="name">
+  <button (click)="toggle()">БАЦ</button>
+</div>
+<ng-template #unset> 
+  <p *ngFor="let item of items; let i = index">{{i+1}}.{{item}}</p>
+</ng-template>  
