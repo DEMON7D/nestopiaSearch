@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
+import {HttpService} from './http.servise';
 
 
 @Component({
   selector: 'home-search',
-  templateUrl: 'app/homeSearch/homeSearch.html'
+  templateUrl: 'homeSearch.html'
 })
 export class HomeSearchComponent {
   name: string = "";
+  searchStatus: string = "to rent";
   condition: boolean = true;
   private response: any;
 
@@ -16,11 +18,18 @@ export class HomeSearchComponent {
   toggle() {
     this.condition = !this.condition;
     console.log(this.name);
-    //debugger;
-    this.response = this.http.getData("https://api.nestoria.co.uk/api?encoding=json&listing_type=buy&action=search_listings&place_name='" + this.name + "'")
+    console.log(this.searchStatus);
+
+    this.http.getData("https://api.nestoria.co.uk/api?encoding=json&listing_type="+
+      this.searchStatus+
+      "&action=search_listings&place_name='" +
+      this.name + "'")
       .subscribe(data => {
-        console.log(data);
-        console.log(this.response);
+        this.response = data;
+
+          data.listings.forEach(item => {
+            //console.log(item.title);
+          });
       });
   }
 }
