@@ -1,0 +1,9 @@
+<div class="pagination">
+    <button (click)="onclick('<')"><</button>
+    <button (click)="onclick('<<')">&lt;&lt;</button>
+    <button *ngFor="let i of this.pages" (click)="onclick(i)">{{ i }} </button>
+    <button (click)="onclick('>>')">>></button>
+    <button (click)="onclick('>')">></button>
+
+
+</div>

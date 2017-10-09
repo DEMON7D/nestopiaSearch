@@ -1,0 +1,6 @@
+
+<div class="block" *ngFor="let item of response?.listings">
+  <search-result-block [item]="item"></search-result-block>
+</div>
+
+<app-pagination *ngIf="response?.total_pages" [totalPages]="response.total_pages" [page]="response.page"></app-pagination>

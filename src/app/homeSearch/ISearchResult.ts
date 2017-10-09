@@ -15,6 +15,6 @@ interface ISearchResult {
     ],
   page: number,
   status_code: string,
-
+  total_pages: number
 
 }

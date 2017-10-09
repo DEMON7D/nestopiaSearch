@@ -1,17 +1,16 @@
-<div *ngIf="condition;else unset">
 
-  <form #f="ngForm">
-    <input type="radio" value="rent" name="searchStatus" [(ngModel)]="searchStatus" required > to rent
-    <input type="radio" value="buy" name="searchStatus" [(ngModel)]="searchStatus" required > for sale
+<div class="container">
+    <form #f="ngForm">
+      <input type="radio" value="rent" name="searchStatus" [(ngModel)]="searchStatus" required > to rent
+      <input type="radio" value="buy" name="searchStatus" [(ngModel)]="searchStatus" required > for sale
 
-  </form>
+    </form>
 
-  <input type="text" placeholder="Location" [(ngModel)]="name">
-  <button (click)="toggle()">БАЦ</button>
+    <input type="text" placeholder="Location" [(ngModel)]="name">
+    <button (click)="toggle()">БАЦ</button>
+
+      <search-result [response]="response"></search-result>
+
+
 </div>
-<ng-template #unset> 
-  <div *ngFor="let item of response?.listings">{{item.title}}
-      <img src={{item.thumb_url}}>
-      <div>{{item.price_formatted}}</div>
-  </div>
-</ng-template>  
+  
