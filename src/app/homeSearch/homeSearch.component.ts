@@ -27,8 +27,8 @@ export class HomeSearchComponent {
         console.log(data);
 //debugger
           this.totalPages = data.total_pages;
-          data.total_pages = 20;
-          data.page = 11;
+          data.total_pages = 15;
+          data.page = 12;
           data.listings.forEach(item => {
             //console.log(item.title);
           });
