@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {HttpService} from './http.servise';
 import {NavService} from "./nav.service";
+import {DataService} from "./data.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HomeSearchComponent {
   totalPages: number;
   page: number;
 
-  constructor(private http: HttpService, private navPage: NavService) {
+  constructor(private http: HttpService, private navPage: NavService, private setItems: DataService) {
     this.navPage.onPageChange.subscribe(
       num => {
         if(typeof (num)=="number")this.search(num);
@@ -56,6 +57,8 @@ export class HomeSearchComponent {
         this.totalPages = data.total_pages;
         console.log(data.total_pages);
         console.log(this.page);
+        //this.setItems.setData(data);
+        this.setItems.onItemsChange.next(data);
         console.log(data);
       });
   }

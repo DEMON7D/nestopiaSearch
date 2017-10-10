@@ -10,6 +10,7 @@ import {PaginationComponent} from "./searchResult/pagination/pagination.componen
 import {NavService} from "./nav.service";
 import {RouterModule, Routes} from "@angular/router";
 import {DetalisComponent} from "./searchResult/details/detalis.component";
+import {DataService} from "./data.service";
 
 const appRoutes: Routes =[
   { path: 'items', component: SearchResultComponent},
@@ -33,8 +34,10 @@ const appRoutes: Routes =[
   ],
   providers: [
     HttpService,
-    NavService
+    NavService,
+    DataService
   ]
 })
+
 export class HomeSearchModule {
 }
