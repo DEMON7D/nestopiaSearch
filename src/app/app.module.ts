@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HomeSearchModule} from "./homeSearch/homeSearch.module";
+import {NavService} from "./homeSearch/nav.service";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import {HomeSearchModule} from "./homeSearch/homeSearch.module";
     BrowserModule,
     HomeSearchModule
   ],
-  providers: [],
+  providers: [NavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

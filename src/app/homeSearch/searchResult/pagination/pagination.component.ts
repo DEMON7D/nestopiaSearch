@@ -1,4 +1,5 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {NavService} from "../../nav.service";
 
 @Component({
   selector: 'app-pagination',
@@ -11,47 +12,46 @@ export class PaginationComponent implements OnChanges {
   pages: number[]=[];
 
 
-  constructor() {
+
+  constructor(private navPage: NavService) {
+
   }
 
   ngOnChanges() {
-    let emptyCount = 0;
+
     let half = 5;
-    this.pages = [];
-    //debugger;
-    if(this.totalPages <= half*2){
-        for (let i = 0; i < this.totalPages; i++) {
-          this.pages[i]=i+1;
-        }
-    }else{
-      if(this.totalPages-this.page<=5){
-        let start:number = this.totalPages-half*2;
-        for(let i = 0; i < half * 2 + 1; i++){
-          this.pages[i] = start + i;
-        }
+
+    let firstPage = 0, lastPage = 0;
+
+    if (this.totalPages <= half * 2) {
+      firstPage = 1;
+      lastPage = this.totalPages;
+    } else {
+      if (this.page <= half){
+        //console.log("неправильно");
+        firstPage = 1;
+        lastPage = half * 2+1;
       }else {
-        for (let i = 0; i < half * 2 + 1; i++) {
-          if (this.page - half + i <= 0) {
-            emptyCount++;
-            continue;
-          }
-          if ((this.page - half - 1 + i) >= this.totalPages) {
-            break;
-          }
-          this.pages[i] = this.page - half + i;
-        }
-        if (emptyCount > 0) {
-          for (let i = 0; i < emptyCount; i++) {
-            this.pages.splice(0, 1);
-          }
+        if (this.totalPages - this.page < half) {
+
+          firstPage = this.totalPages - half * 2;
+          lastPage = this.totalPages;
+        } else {
+          firstPage = this.page - half;
+          lastPage = this.page + half;
         }
       }
     }
-    console.log(this.pages);
-  }
+
+    for(let i = 0; i <= half*2+1; i++){
+      if(firstPage+i==lastPage)break;
+      this.pages[i]=firstPage+i;
+    }
+}
 
   onclick(i: number){
-    console.log(i);
+    this.navPage.onPageChange.next(i);
+    //console.log(i);
   }
 }
 

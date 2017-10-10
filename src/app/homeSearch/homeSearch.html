@@ -1,5 +1,6 @@
 
 <div class="container">
+
     <form #f="ngForm">
       <input type="radio" value="rent" name="searchStatus" [(ngModel)]="searchStatus" required > to rent
       <input type="radio" value="buy" name="searchStatus" [(ngModel)]="searchStatus" required > for sale
@@ -7,9 +8,10 @@
     </form>
 
     <input type="text" placeholder="Location" [(ngModel)]="name">
-    <button (click)="toggle()">БАЦ</button>
+    <button (click)="search(1)">Search</button>
 
-      <search-result [response]="response"></search-result>
+    <router-outlet></router-outlet>
+      <!--<search-result [response]="response"></search-result>-->
 
 
 </div>

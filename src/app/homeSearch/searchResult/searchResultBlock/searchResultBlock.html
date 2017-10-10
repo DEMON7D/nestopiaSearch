@@ -1,4 +1,8 @@
 
-<img src={{item.thumb_url}}>
-{{item.title}}
-<div>{{item.price_formatted}}</div>
+
+<nav>
+  <img src={{item.thumb_url}}>
+  {{item.title}}
+  <div>{{item.price_formatted}}</div>
+  <a [routerLink]="['item', '5']">item 5</a>
+</nav>
