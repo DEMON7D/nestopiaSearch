@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 
-
 @Component({
   selector: 'search-result-block',
   templateUrl: 'searchResultBlock.html',
@@ -8,6 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 
 export class SearchResultBlockComponent {
-@Input() item:any;
+@Input() item;
 
 }

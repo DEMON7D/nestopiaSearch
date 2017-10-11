@@ -1,18 +1,16 @@
 
-<div class="container">
-
-    <form #f="ngForm">
+<div class="block-search">
+  <div>
+    <form  #f="ngForm">
       <input type="radio" value="rent" name="searchStatus" [(ngModel)]="searchStatus" required > to rent
       <input type="radio" value="buy" name="searchStatus" [(ngModel)]="searchStatus" required > for sale
-
     </form>
-
     <input type="text" placeholder="Location" [(ngModel)]="name">
-    <button (click)="search(1)">Search</button>
+    <button (click)="search()">Search</button>
+  </div>
+</div>
 
+<div class="container">
     <router-outlet></router-outlet>
-      <search-result ></search-result>
-
-
 </div>
   

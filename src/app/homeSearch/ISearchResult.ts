@@ -1,13 +1,9 @@
-interface ISearchResult {
+import {IItem} from "./IItem";
+
+export interface ISearchResult {
 
 
-  listings: [
-    {
-      title: string,
-      price_formatted: string,
-      thumb_url:string,
-    }
-    ],
+  listings: IItem[],
   locations: [
     {
       title: string

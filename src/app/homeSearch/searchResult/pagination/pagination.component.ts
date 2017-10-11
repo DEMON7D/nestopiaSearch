@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {NavService} from "../../nav.service";
 
 @Component({
@@ -28,17 +28,15 @@ export class PaginationComponent implements OnChanges {
       lastPage = this.totalPages;
     } else {
       if (this.page <= half){
-        //console.log("неправильно");
         firstPage = 1;
-        lastPage = half * 2+1;
+        lastPage = half * 2+2;
       }else {
         if (this.totalPages - this.page < half) {
-
           firstPage = this.totalPages - half * 2;
-          lastPage = this.totalPages;
+          lastPage = this.totalPages+1;
         } else {
           firstPage = this.page - half;
-          lastPage = this.page + half;
+          lastPage = this.page + half+1;
         }
       }
     }
@@ -51,7 +49,10 @@ export class PaginationComponent implements OnChanges {
 
   onclick(i: number){
     this.navPage.onPageChange.next(i);
-    //console.log(i);
+  }
+
+  getColor(i:number){
+    if (i==this.page) {return "aqua"} else {return "black"}
   }
 }
 

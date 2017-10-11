@@ -1,68 +1,22 @@
 import {Component} from '@angular/core';
-import {HttpService} from './http.servise';
-import {NavService} from "./nav.service";
-import {DataService} from "./data.service";
+import {Router} from "@angular/router";
 
 
 @Component({
   selector: 'home-search',
-  templateUrl: 'homeSearch.html'
+  templateUrl: 'homeSearch.html',
+  styleUrls: ['homeSearch.css']
 })
 export class HomeSearchComponent {
   name: string = "";
   searchStatus: string = "to_rent";
-  response: any;
-  totalPages: number;
-  page: number;
 
-  constructor(private http: HttpService, private navPage: NavService, private setItems: DataService) {
-    this.navPage.onPageChange.subscribe(
-      num => {
-        if(typeof (num)=="number")this.search(num);
-        else{
-          switch (num)
-          {
-            case ">" :
-              if(this.page+1<=this.totalPages)
-              this.search(this.page+1);
-              break;
-            case ">>" :
-              this.search(this.totalPages);
-              break;
-            case "<" :
-              this.search(this.page-1);
-              break;
-            case "<<" :
-              this.search(1);
-              break;
-            default:console.log("неправильно  ");
-
-          }
-        }
-        console.log(num);
-      }
-    );
+  constructor(private router : Router) {
   }
 
-
- private search(page) {
-
+ private search() {
     console.log(this.name);
     console.log(this.searchStatus);
-
-    this.http.getData(this.generateUrl(page))
-      .subscribe(data => {
-        this.page = data.page;
-        this.response = data;
-        this.totalPages = data.total_pages;
-        console.log(data.total_pages);
-        console.log(this.page);
-        //this.setItems.setData(data);
-        this.setItems.onItemsChange.next(data);
-        console.log(data);
-      });
-  }
-  generateUrl(page:number){
-     return `https://api.nestoria.co.uk/api?encoding=json&listing_type=${this.searchStatus}+&action=search_listings&place_name=${this.name}&page=${page}`;
+    this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus } });
   }
 }

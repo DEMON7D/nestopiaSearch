@@ -7,13 +7,13 @@ import {NavService} from "./homeSearch/nav.service";
 
 @NgModule({
   declarations: [
-    AppComponent
+
   ],
   imports: [
     BrowserModule,
     HomeSearchModule
   ],
-  providers: [NavService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

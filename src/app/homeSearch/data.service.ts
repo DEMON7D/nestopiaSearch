@@ -1,16 +1,7 @@
-import {Subject} from "rxjs/Subject";
+//import {Subject} from "rxjs/Subject";
+import {ReplaySubject} from "rxjs/ReplaySubject";
+import {IItem} from "./IItem";
 
 export class DataService{
-  onItemsChange = new Subject();
-//  private data: any;
-
-/*  getData() {
-    debugger;
-    return this.data;
-  }
-
-  setData(response){
-    debugger;
-      this.data = response;
-  }*/
+  onViewDetalis = new ReplaySubject<IItem>(1);
 }

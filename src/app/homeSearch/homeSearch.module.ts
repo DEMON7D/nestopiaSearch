@@ -9,12 +9,20 @@ import {SearchResultBlockComponent} from "./searchResult/searchResultBlock/searc
 import {PaginationComponent} from "./searchResult/pagination/pagination.component";
 import {NavService} from "./nav.service";
 import {RouterModule, Routes} from "@angular/router";
-import {DetalisComponent} from "./searchResult/details/detalis.component";
+import {DetailsComponent} from "./searchResult/details/details.component";
+import {NotFoundComponent} from "./searchResult/notFound/notFound.component";
+import {AppComponent} from "../app.component";
 import {DataService} from "./data.service";
 
+const itemRoutes: Routes = [
+  { path: '', component: SearchResultComponent},
+  { path: 'info', component: DetailsComponent},
+];
+
 const appRoutes: Routes =[
-  { path: 'items', component: SearchResultComponent},
-  { path: 'items/:id', component: DetalisComponent}
+  { path: '', component: SearchResultComponent},
+  { path: 'items',children: itemRoutes},
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -27,7 +35,9 @@ const appRoutes: Routes =[
     SearchResultComponent,
     SearchResultBlockComponent,
     PaginationComponent,
-    DetalisComponent
+    DetailsComponent,
+    NotFoundComponent,
+    AppComponent
   ],
   exports: [ HomeSearchComponent
 
