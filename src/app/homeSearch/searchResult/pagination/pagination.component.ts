@@ -52,7 +52,8 @@ export class PaginationComponent implements OnChanges {
   }
 
   getColor(i:number){
-    if (i==this.page) {return "aqua"} else {return "black"}
+    if (i==this.page) {return true}
+    return false;
   }
 }
 

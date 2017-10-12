@@ -2,6 +2,24 @@
   display: flex;
   justify-content: center;
 }
-.selected{
-  color: aqua;
+
+.button {
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  border: none;
+  color: #0083E0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 1px;
+}
+
+.button:hover{
+  background-color: #008CBA;
+  color : #ddd;
+}
+.button-selected{
+  color: #eeece0;
+  background-color: #008CBA;
 }

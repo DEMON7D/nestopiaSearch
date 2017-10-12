@@ -1,16 +1,20 @@
 
-<div class="block-search">
+<div class="block-header">
+
   <div>
     <form  #f="ngForm">
       <input type="radio" value="rent" name="searchStatus" [(ngModel)]="searchStatus" required > to rent
       <input type="radio" value="buy" name="searchStatus" [(ngModel)]="searchStatus" required > for sale
     </form>
-    <input type="text" placeholder="Location" [(ngModel)]="name">
-    <button (click)="search()">Search</button>
   </div>
 </div>
+<div  class="block-search">
+  <span>Location:</span>
+  <input type="text" [(ngModel)]="name">
+  <button class="button" (click)="search()">Search</button>
+</div>
 
-<div class="container">
+<div class="content">
     <router-outlet></router-outlet>
 </div>
   

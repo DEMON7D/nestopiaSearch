@@ -9,14 +9,15 @@ import {Router} from "@angular/router";
 })
 export class HomeSearchComponent {
   name: string = "";
-  searchStatus: string = "to_rent";
+  searchStatus: string = "rent";
 
   constructor(private router : Router) {
+
   }
 
  private search() {
     console.log(this.name);
     console.log(this.searchStatus);
-    this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus } });
+    this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus,page: 1} });
   }
 }

@@ -26,17 +26,20 @@ export class SearchResultComponent implements  OnDestroy{
    // debugger;
     this.querySubscription = route.queryParams.subscribe(
       (queryParam: any) => {
+        this.response = null;
         this.name = queryParam['name'];
         this.searchStatus = queryParam['search'];
+        this.page = queryParam['page'];
         console.log("name:",this.name);
-        console.log("name:",this.searchStatus);
-        this.search(this.generateUrl(1));
+        console.log("searchStatus:",this.searchStatus);
+        this.search(this.generateUrl(this.page));
       }
     );
 
 
     this.navPage.onPageChange.subscribe(
       num => {
+        if(num==this.page) return;
         if(typeof (num)=="number")this.newPage(num);
         else{
           switch (num)
@@ -63,11 +66,11 @@ export class SearchResultComponent implements  OnDestroy{
   }
 
   private newPage(page){
-    this.search(this.generateUrl(page));
+    this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus,page: page} });
   }
 
   private search(url) {
-
+  console.log("serch",this.searchStatus);
     this.http.getData(url)
       .subscribe(data => {
         this.totalPages = data.total_pages;
@@ -79,7 +82,7 @@ export class SearchResultComponent implements  OnDestroy{
   }
 
   private generateUrl(page){
-     return `https://api.nestoria.co.uk/api?encoding=json&listing_type=${this.searchStatus}+&action=search_listings&place_name=${this.name}&page=${page}`;;
+     return `https://api.nestoria.co.uk/api?encoding=json&listing_type=${this.searchStatus}&action=search_listings&country=uk&place_name=${this.name}&page=${page}`;
   }
 
   ngOnDestroy(){

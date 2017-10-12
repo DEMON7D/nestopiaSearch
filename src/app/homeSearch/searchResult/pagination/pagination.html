@@ -1,8 +1,7 @@
 <div class="pagination">
-    <button (click)="onclick('<')"><</button>
-    <button (click)="onclick('<<')">&lt;&lt;</button>
-    <button *ngFor="let i of this.pages" (click)="onclick(i)" [style.color]="getColor(i)">{{ i }} </button>
-    <button (click)="onclick('>>')">>></button>
-    <button (click)="onclick('>')">></button>
-
+    <button class="button" (click)="onclick('<')"><</button>
+    <button class="button" (click)="onclick('<<')">&lt;&lt;</button>
+    <button class="button" *ngFor="let i of this.pages" (click)="onclick(i)" [class.button-selected]="getColor(i)">{{ i }} </button>
+    <button class="button" (click)="onclick('>>')">>></button>
+    <button class="button" (click)="onclick('>')">></button>
 </div>

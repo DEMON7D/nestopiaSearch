@@ -17,6 +17,7 @@ export class DetailsComponent implements OnDestroy{
     console.log("паламау");
     this.dataService.onViewDetalis.subscribe( item=>{
         console.log(item);
+        console.log("sasadasd",item.img_height);
         this.item = item;
       }
     );

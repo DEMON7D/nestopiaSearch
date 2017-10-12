@@ -1,1 +1,15 @@
-
+.title{
+  color: #008CBA;
+}
+.price{
+  background-color: #45474B;
+  border-radius: 3px;
+  color: whitesmoke;
+}
+.img-div{
+  width: 250px;
+  height: 100%;
+}
+.img-full{
+  height: 100%;
+}

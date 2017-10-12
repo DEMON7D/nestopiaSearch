@@ -1,8 +1,10 @@
 
 
 <nav>
-  <img src={{item.thumb_url}}>
-  {{item.title}}
-  <div>{{item.price_formatted}}</div>
-
+  <div class="img-div">
+    <img class="img-full" src={{item.thumb_url}}>
+  </div>
+  <span class="price">{{item.price_formatted}}</span>
+  <br>
+  <span class="title">{{item.title}}</span>
 </nav>
