@@ -1,5 +1,16 @@
-<br>
-<p> {{item?.title}}</p>
-<div class="img-div">
-  <img class="img-full" src={{item.img_url}}>
+<div class="block">
+  <div class="img-div">
+    <img class="img-full" src={{item?.img_url}} lowsrc={{item?.thumb_url}}>
+  </div>
+  <div class="block-description">
+    <span class="price">{{item?.price_formatted}}</span>
+    <br>
+    <span class="title">{{item?.title}}</span>
+    <br>
+    <span class="description" *ngIf='item?.bathroom_number!=="";'>·{{item.bathroom_number}} Bathroom</span>
+    <span class="description" *ngIf='item?.bedroom_number!==0;'>·{{item.bedroom_number}} Beds</span>
+    <span class="description">·</span>s
+  </div>
 </div>
+
+

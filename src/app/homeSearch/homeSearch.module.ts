@@ -13,6 +13,7 @@ import {DetailsComponent} from "./searchResult/details/details.component";
 import {NotFoundComponent} from "./searchResult/notFound/notFound.component";
 import {AppComponent} from "../app.component";
 import {DataService} from "./data.service";
+import {MessageComponent} from "./searchResult/message/message.component";
 
 const itemRoutes: Routes = [
   { path: '', component: SearchResultComponent},
@@ -20,6 +21,11 @@ const itemRoutes: Routes = [
 ];
 
 const appRoutes: Routes =[
+  {
+    path: 'compose',
+    component: MessageComponent,
+    outlet: 'popup'
+  },
   { path: '', component: SearchResultComponent},
   { path: 'items',children: itemRoutes},
   { path: '**', component: NotFoundComponent}
@@ -37,7 +43,8 @@ const appRoutes: Routes =[
     PaginationComponent,
     DetailsComponent,
     NotFoundComponent,
-    AppComponent
+    AppComponent,
+    MessageComponent
   ],
   exports: [ HomeSearchComponent
 

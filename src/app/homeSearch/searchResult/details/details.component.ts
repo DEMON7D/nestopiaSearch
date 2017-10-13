@@ -7,14 +7,15 @@ import {IItem} from "../../IItem";
 
 @Component({
   selector: 'item-info',
-  templateUrl: 'detalis.html'
+  templateUrl: 'detalis.html',
+  styleUrls: ['./detalis.css']
 })
 export class DetailsComponent implements OnDestroy{
 
   private item: IItem;
   private subscription: Subscription;
   constructor(private activateRoute: ActivatedRoute,private dataService: DataService){
-    console.log("паламау");
+    console.log("dddddпаламау");
     this.dataService.onViewDetalis.subscribe( item=>{
         console.log(item);
         console.log("sasadasd",item.img_height);

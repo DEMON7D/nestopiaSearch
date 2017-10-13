@@ -13,7 +13,7 @@ import {IItem} from "../IItem";
   styleUrls: ['searchResult.css']
 })
 
-export class SearchResultComponent implements  OnDestroy{
+export class SearchResultComponent implements OnDestroy {
   response: ISearchResult;
   totalPages: number;
   page: number;
@@ -21,43 +21,48 @@ export class SearchResultComponent implements  OnDestroy{
   private searchStatus: string;
   private querySubscription: Subscription;
 
-  constructor( private http: HttpService,private navPage: NavService,private route: ActivatedRoute,private router : Router,private dataServise: DataService){
-    //this.search(this.generateUrl(1));
-   // debugger;
-    this.querySubscription = route.queryParams.subscribe(
-      (queryParam: any) => {
-        this.response = null;
-        this.name = queryParam['name'];
-        this.searchStatus = queryParam['search'];
-        this.page = queryParam['page'];
-        console.log("name:",this.name);
-        console.log("searchStatus:",this.searchStatus);
-        this.search(this.generateUrl(this.page));
-      }
-    );
+  constructor(private http: HttpService, private navPage: NavService, private route: ActivatedRoute, private router: Router, private dataServise: DataService) {
+
+    this.querySubscription = route.queryParams
+      .subscribe(
+        (queryParam: any) => {
+
+          console.log("name:", this.name);
+          console.log("searchStatus:", this.searchStatus);
+          if(!queryParam['name'])return;
+          if (this.name == queryParam['name'] && this.searchStatus == queryParam['search'] && this.page == queryParam['page']) {
+            console.log("xj rfdj");
+            return;
+          }
+          this.name = queryParam['name'];
+          this.searchStatus = queryParam['search'];
+          this.page = queryParam['page'];
+          this.search(this.generateUrl(this.page));
+        }
+      );
 
 
     this.navPage.onPageChange.subscribe(
       num => {
-        if(num==this.page) return;
-        if(typeof (num)=="number")this.newPage(num);
-        else{
-          switch (num)
-          {
+        if (num == this.page) return;
+        if (typeof (num) == "number") this.newPage(num);
+        else {
+          switch (num) {
             case ">" :
-              if(this.page+1<=this.totalPages)
-                this.newPage(this.page+1);
+              if (this.page + 1 <= this.totalPages)
+                this.newPage(this.page + 1);
               break;
             case ">>" :
               this.newPage(this.totalPages);
               break;
             case "<" :
-              this.newPage(this.page-1);
+              this.newPage(this.page - 1);
               break;
             case "<<" :
               this.newPage(1);
               break;
-            default:console.log("неправильно  ");
+            default:
+              console.log("неправильно  ");
 
           }
         }
@@ -65,12 +70,12 @@ export class SearchResultComponent implements  OnDestroy{
     );
   }
 
-  private newPage(page){
-    this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus,page: page} });
+  private newPage(page) {
+    this.router.navigate([`/items`], {queryParams: {name: this.name, search: this.searchStatus, page: page}});
   }
 
   private search(url) {
-  console.log("serch",this.searchStatus);
+    console.log("serch", this.searchStatus, url);
     this.http.getData(url)
       .subscribe(data => {
         this.totalPages = data.total_pages;
@@ -81,18 +86,21 @@ export class SearchResultComponent implements  OnDestroy{
 
   }
 
-  private generateUrl(page){
-     return `https://api.nestoria.co.uk/api?encoding=json&listing_type=${this.searchStatus}&action=search_listings&country=uk&place_name=${this.name}&page=${page}`;
+  private generateUrl(page) {
+    return `https://api.nestoria.co.uk/api?encoding=json&listing_type=${this.searchStatus}&action=search_listings&country=uk&place_name=${this.name}&page=${page}`;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
+    console.log("меня сламали ");
     this.querySubscription.unsubscribe();
   }
 
-  onclick(item: IItem){
+  onclick(item: IItem) {
     console.log(item);
     this.dataServise.onViewDetalis.next(item);
-    this.router.navigate([`/items/info`]);
+    //this.router.navigate([`/items/info`]);
+    this.router.navigate([{outlets: {popup: ['compose']}}]);
+    //this.router.navigate([{ outlets: { popup: null }}]);
   }
 
 }

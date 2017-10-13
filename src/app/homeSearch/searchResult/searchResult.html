@@ -15,15 +15,9 @@
   </div>
 </div>
 <ng-template #unset>
-
   <app-pagination [totalPages]="response.total_pages" [page]="response.page" ></app-pagination>
-
   <div class="block" *ngFor="let item of response?.listings" >
-
-    <search-result-block [item]="item" (click)="onclick(item)"></search-result-block>
-
+    <search-result-block class="block-result" [item]="item" (click)="onclick(item)"></search-result-block>
   </div>
-
   <app-pagination [totalPages]="response.total_pages" [page]="response.page" ></app-pagination>
-
 </ng-template>

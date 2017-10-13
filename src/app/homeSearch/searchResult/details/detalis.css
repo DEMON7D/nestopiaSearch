@@ -1,7 +1,29 @@
 .img-div{
   width: 250px;
-  height: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 9px;
+  border:1px solid #bbbbbb;
 }
 .img-full{
-  height: 100%;
+  min-width: 250px;
+  min-height: 250px;
+}
+.block{
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.6); /* Тень */
+  padding: 10px; /* Поля вокруг текста */
+  border-radius: 3px; /* Радиус скругления */
+  background: #FFFFFF; /* Цвет фона */
+  border: 2px solid beige;
+  margin: 20px 20px 20px 20px;
+  font-size: 17px;
+  flex-direction: row;
+}
+.title{
+  color: #008CBA;
+}
+.price{
+  background-color: #45474B;
+  border-radius: 3px;
+  color: whitesmoke;
 }

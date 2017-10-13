@@ -1,3 +1,5 @@
+
+<div class="block" (click)="destroy()">
   <div class="img-div">
     <div class="hovergallery">
       <img class="img-full" src={{item.img_url}} lowsrc={{item.thumb_url}}>
@@ -12,4 +14,4 @@
     <span class="description" *ngIf='item.bedroom_number!==0;'>·{{item.bedroom_number}} Beds</span>
     <span class="description">·</span>
   </div>
-
+</div>
