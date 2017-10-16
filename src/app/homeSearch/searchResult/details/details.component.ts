@@ -10,22 +10,7 @@ import {IItem} from "../../IItem";
   templateUrl: 'detalis.html',
   styleUrls: ['./detalis.css']
 })
-export class DetailsComponent implements OnDestroy{
+export class DetailsComponent {
 
-  private item: IItem;
-  private subscription: Subscription;
-  constructor(private activateRoute: ActivatedRoute,private dataService: DataService){
-    console.log("dddddпаламау");
-    this.dataService.onViewDetalis.subscribe( item=>{
-        console.log(item);
-        console.log("sasadasd",item.img_height);
-        this.item = item;
-      }
-    );
-    this.subscription = activateRoute.params.subscribe(params=>{});
-  }
-  ngOnDestroy(){
-    console.log("паламау2");
-    this.subscription.unsubscribe();
-  }
+
 }

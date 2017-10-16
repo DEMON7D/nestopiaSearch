@@ -14,6 +14,8 @@ import {NotFoundComponent} from "./searchResult/notFound/notFound.component";
 import {AppComponent} from "../app.component";
 import {DataService} from "./data.service";
 import {MessageComponent} from "./searchResult/message/message.component";
+import {FiltersComponent} from "./searchResult/filters/filters.component";
+import {ItemService} from "./item.service";
 
 const itemRoutes: Routes = [
   { path: '', component: SearchResultComponent},
@@ -24,7 +26,7 @@ const appRoutes: Routes =[
   {
     path: 'compose',
     component: MessageComponent,
-    outlet: 'popup'
+    outlet: 'popup',
   },
   { path: '', component: SearchResultComponent},
   { path: 'items',children: itemRoutes},
@@ -44,7 +46,8 @@ const appRoutes: Routes =[
     DetailsComponent,
     NotFoundComponent,
     AppComponent,
-    MessageComponent
+    MessageComponent,
+    FiltersComponent
   ],
   exports: [ HomeSearchComponent
 
@@ -52,7 +55,8 @@ const appRoutes: Routes =[
   providers: [
     HttpService,
     NavService,
-    DataService
+    DataService,
+    ItemService
   ]
 })
 

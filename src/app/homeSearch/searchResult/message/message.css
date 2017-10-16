@@ -3,15 +3,15 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 92%;
+  width: 95%;
   height: 65%;
-  z-index: 999;
+  z-index: 99;
   box-shadow: 2px 2px 1px rgba(0,0,0,0.6); /* Тень */
   padding: 10px; /* Поля вокруг текста */
   border-radius: 3px; /* Радиус скругления */
   background: #FFFFFF; /* Цвет фона */
   border: 2px solid beige;
-  margin: 20px 20px 20px 20px;
+  margin: 2% 2% 2% 2%;
   font-size: 17px;
   flex-direction: row;
   display: flex;
@@ -72,3 +72,16 @@
   -webkit-box-shadow:0px 0px 30px gray; /*Safari shadow version*/
   -moz-box-shadow:0px 0px 30px gray; /*Mozilla shadow version*/
 }
+.star{
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  z-index: 99;
+  color: #008CBA;
+  font-size: 25px;
+  margin: 20px 20px 20px 20px;
+}
+
+
+

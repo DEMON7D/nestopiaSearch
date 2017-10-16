@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../data.service";
 import {ISearchResult} from "../ISearchResult";
 import {IItem} from "../IItem";
+import {ItemService} from "../item.service";
+import {IQuery} from "./IQuery";
 
 @Component({
   selector: 'search-result',
@@ -20,18 +22,23 @@ export class SearchResultComponent implements OnDestroy {
   private name: string;
   private searchStatus: string;
   private querySubscription: Subscription;
+  queryParam: IQuery;
 
-  constructor(private http: HttpService, private navPage: NavService, private route: ActivatedRoute, private router: Router, private dataServise: DataService) {
+  constructor(private http: HttpService,
+              private navPage: NavService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private dataServise: DataService,
+              private itemServise: ItemService) {
 
     this.querySubscription = route.queryParams
       .subscribe(
         (queryParam: any) => {
 
-          console.log("name:", this.name);
-          console.log("searchStatus:", this.searchStatus);
-          if(!queryParam['name'])return;
-          if (this.name == queryParam['name'] && this.searchStatus == queryParam['search'] && this.page == queryParam['page']) {
-            console.log("xj rfdj");
+          if(!queryParam['name']){
+            return;
+          }
+          if (this.name == queryParam['name'] && this.searchStatus == queryParam['search']&& this.page == queryParam['page']) {
             return;
           }
           this.name = queryParam['name'];
@@ -81,7 +88,6 @@ export class SearchResultComponent implements OnDestroy {
         this.totalPages = data.total_pages;
         this.page = data.page;
         this.response = data;
-
       });
 
   }
@@ -91,13 +97,23 @@ export class SearchResultComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("меня сламали ");
     this.querySubscription.unsubscribe();
   }
 
   onclick(item: IItem) {
-    console.log(item);
+
     this.dataServise.onViewDetalis.next(item);
+    //debugger;
+    this.queryParam = <IQuery>{
+      page: this.page,
+      name: this.name,
+      searchStatus: this.searchStatus
+    };
+    /*this.queryParam.page = this.page;
+    this.queryParam.name = this.name;
+    this.queryParam.searchStatus = this.searchStatus;*/
+    console.log("adddddddddd",this.queryParam);
+    this.itemServise.onItemChange.next(this.queryParam);
     //this.router.navigate([`/items/info`]);
     this.router.navigate([{outlets: {popup: ['compose']}}]);
     //this.router.navigate([{ outlets: { popup: null }}]);
