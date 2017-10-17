@@ -1,0 +1,47 @@
+body {
+  font-family:sans-serif;
+}
+
+.filter {
+  margin:4px;
+  color:#333;
+  border: 1px solid #DBDBDB;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #F5F5F5;
+}
+
+.filter label {
+  width:170px;
+  margin:4px;
+  background-color:#EFEFEF;
+  border-radius:4px;
+  border:1px solid #D0D0D0;
+  overflow:auto;
+
+}
+
+.filter label span {
+  text-align:center;
+  font-size: 18px;
+  padding:13px 0px;
+  display:block;
+
+}
+
+.filter label input {
+  position:absolute;
+  top:-20px;
+}
+
+.filter input:checked + span {
+  background-color:#0083E0;
+  color:#F7F7F7;
+}
+
+.filter-name{
+
+
+}

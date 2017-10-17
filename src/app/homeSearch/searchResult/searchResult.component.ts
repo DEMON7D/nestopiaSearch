@@ -119,5 +119,30 @@ export class SearchResultComponent implements OnDestroy {
     //this.router.navigate([{ outlets: { popup: null }}]);
   }
 
+  onChangedProperty(increased){
+    //console.log(increased);
+   /* let keywords: string;
+    if(increased=="All")keywords="";
+    if(increased=="House")keywords="house";
+    if(increased=="Flat")keywords="flat";*/
+    console.log(increased);
+    //this.search(this.generateUrl(1)+`&keywords=${increased}`);
+  }
+  onChangedBeds(increased){
+    console.log(increased);
+    if(increased==4){
+      this.search(this.generateUrl(1)+`&bedroom_min=4`);
+      return;
+    }
+    this.search(this.generateUrl(1)+`&bedroom_min=${increased}&bedroom_max=${increased}`);
+  }
+  onChangedBathrooms(increased){
+    console.log(increased);
+    if(increased==4){
+      this.search(this.generateUrl(1)+`&bedroom_min=4`);
+      return;
+    }
+    this.search(this.generateUrl(1)+`&bathroom_min=${increased}&bathroom_max=${increased}`);
+  }
 }
 

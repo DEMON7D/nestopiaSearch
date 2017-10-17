@@ -15,6 +15,11 @@
   </div>
 </div>
 <ng-template #unset>
+  <filter class="filters" (onChangedProperty)="onChangedProperty($event)"
+                          (onChangedBeds)="onChangedBeds($event)"
+                          (onChangedBathrooms)="onChangedBathrooms($event)">
+
+  </filter>
   <app-pagination [totalPages]="response.total_pages" [page]="response.page" ></app-pagination>
   <div class="block" *ngFor="let item of response?.listings" >
     <search-result-block class="block-result" [item]="item" (click)="onclick(item)"></search-result-block>

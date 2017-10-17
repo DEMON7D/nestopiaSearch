@@ -1,23 +1,28 @@
-
-<div>
-  <span>Beds</span>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4+</button>
-</div>
-<div>
-  <span>Property type</span>
-  <button>All</button>
-  <button>Flat</button>
-  <button>House</button>
-</div>
-<div>
-  <span>Bathrooms</span>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4+</button>
+<div class="filter" (change)="changeBathrooms()">
+  <span class="filter-name">
+    Bathrooms
+  </span>
+  <label ><input type="radio" value="1" name="Bathrooms" [(ngModel)]="bathrooms"><span>1</span></label>
+  <label ><input type="radio" value="2" name="Bathrooms" [(ngModel)]="bathrooms"><span>2</span></label>
+  <label ><input type="radio" value="3" name="Bathrooms" [(ngModel)]="bathrooms"><span>3</span></label>
+  <label ><input type="radio" value="4" name="Bathrooms" [(ngModel)]="bathrooms"><span>4+</span></label>
 </div>
 
+<div class="filter" (change)="changeBeds()">
+  <span class="filter-name">
+    Beds
+  </span>
+  <label ><input type="radio" value="1" name="Beds" [(ngModel)]="beds"><span>1</span></label>
+  <label ><input type="radio" value="2" name="Beds" [(ngModel)]="beds"><span>2</span></label>
+  <label ><input type="radio" value="3" name="Beds" [(ngModel)]="beds"><span>3</span></label>
+  <label ><input type="radio" value="4" name="Beds" [(ngModel)]="beds"><span>4+</span></label>
+</div>
 
+<div class="filter" (change)="changeProperty()">
+  <span class="filter-name">
+    Property type
+  </span>
+  <label ><input type="radio" value="all" name="Property" [(ngModel)]="property"><span>All</span></label>
+  <label ><input type="radio" value="flat" name="Property" [(ngModel)]="property"><span>Flat</span></label>
+  <label ><input type="radio" value="house" name="Property" [(ngModel)]="property"><span>House</span></label>
+</div>

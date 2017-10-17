@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {DataService} from "../../data.service";
 import {IItem} from "../../IItem";
 import {Router} from "@angular/router";
 import {ItemService} from "../../item.service";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {ItemService} from "../../item.service";
   templateUrl: 'message.html',
   styleUrls: ['./message.css']
 })
-export class MessageComponent {
+export class MessageComponent implements OnDestroy{
 
   favorites: IItem[] = [];
   private item: IItem;
@@ -19,9 +20,12 @@ export class MessageComponent {
   private page: number;
   private name: string;
   private searchStatus: string;
+  private subscribeData: Subscription;
+  private subscribeItem: Subscription;
 
   constructor(private dataService: DataService,private router: Router,private itemServise: ItemService){
-    this.itemServise.onItemChange.subscribe( queryParam =>{
+
+   this.subscribeItem = this.itemServise.onItemChange.subscribe( queryParam =>{
       //debugger
         console.log("message Param",queryParam);
 
@@ -32,7 +36,8 @@ export class MessageComponent {
       console.log(this.name,this.searchStatus,this.page );
       }
     );
-    this.dataService.onViewDetalis.subscribe( item=>{
+    this.subscribeData = this.dataService.onViewDetalis.subscribe( item=>{
+        console.log(item);
         this.favorite = false;
         this.item = item;
         if(localStorage.getItem("favorites")) {
@@ -46,9 +51,11 @@ export class MessageComponent {
         }
       }
     );
+    if(!this.item)this.destroy();
   }
   destroy(){
-    this.router.navigate([{ outlets: { popup: null }}],{queryParams: {name: this.name, search: this.searchStatus, page: this.page}});
+    this.router.navigate([{ outlets: { popup: null }}]);
+    //this.router.navigate([`/items`],{ queryParams: { name: this.name, search: this.searchStatus,page: this.page} });
   }
   setFavorite(){
     if(this.favorite==true){
@@ -71,5 +78,10 @@ export class MessageComponent {
     this.favorites.splice(this.favorites.indexOf(this.item),1);
     localStorage.setItem("favorites", JSON.stringify(this.favorites));
     this.favorite = false;
+  }
+
+  ngOnDestroy(){
+    this.subscribeData.unsubscribe();
+    this.subscribeItem.unsubscribe();
   }
 }

@@ -40,4 +40,9 @@ input{
   color: #69546B;
 }
 
+.filters{
+  display: flex;
+  flex-direction: column;
+}
+
 

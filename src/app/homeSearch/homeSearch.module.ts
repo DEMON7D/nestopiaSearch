@@ -16,6 +16,7 @@ import {DataService} from "./data.service";
 import {MessageComponent} from "./searchResult/message/message.component";
 import {FiltersComponent} from "./searchResult/filters/filters.component";
 import {ItemService} from "./item.service";
+import {HomeComponent} from "./home/home.component";
 
 const itemRoutes: Routes = [
   { path: '', component: SearchResultComponent},
@@ -28,7 +29,8 @@ const appRoutes: Routes =[
     component: MessageComponent,
     outlet: 'popup',
   },
-  { path: '', component: SearchResultComponent},
+  { path: '', redirectTo: 'home',pathMatch: 'full'},
+  { path: 'home', component: HomeComponent},
   { path: 'items',children: itemRoutes},
   { path: '**', component: NotFoundComponent}
 ];
@@ -47,7 +49,8 @@ const appRoutes: Routes =[
     NotFoundComponent,
     AppComponent,
     MessageComponent,
-    FiltersComponent
+    FiltersComponent,
+    HomeComponent,
   ],
   exports: [ HomeSearchComponent
 
